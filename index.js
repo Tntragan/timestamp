@@ -39,24 +39,16 @@ app.get('/api/:timestamp', (req, res) => {
   if (!isNaN(Number(timestamp)) && timestamp.length === 13) {
     unixDate = Number(timestamp);
     utcDate = new Date(Number(timestamp)).toUTCString();
-    /* return res.json({
-      unix: timestamp,
-      utc: new Date(Number(timestamp)).toUTCString()
-    }); */
   } else if (new Date(timestamp).toUTCString() !== "Invalid Date") {
     unixDate = new Date(timestamp).getTime();
     utcDate = new Date(timestamp).toUTCString();
-    /* return res.json({
-      unix: new Date(timestamp).getTime(),
-      utc: new Date(timestamp).toUTCString()
-    }); */
   } else if (new Date(timestamp).toUTCString() === "Invalid Date") {
     return res.json({ error: "Invalid Date" });
-  }
+  };
   res.json({
     unix: unixDate,
     utc: utcDate
-  })
+  });
 });
 
 app.get('/api/:')
